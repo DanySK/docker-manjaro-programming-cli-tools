@@ -23,5 +23,5 @@ RUN yay-install scala
 RUN archlinux-java set java-11-openjdk
 RUN gem install bundler
 ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
-RUN gem jekyll travis
+RUN gem install jekyll travis
 CMD zsh
