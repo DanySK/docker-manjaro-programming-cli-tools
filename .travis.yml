@@ -8,8 +8,8 @@ env:
 
 before_script:
   - export TAG="$(git describe || git log -n1 --date=format:'%Y-%m-%dT%H%M%S' --format=%cd)$(date +%Y-%m-%d_%H%M)"
-  - docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$TAG .
 script:
+  - docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$TAG .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io
   - docker push $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME:latest
