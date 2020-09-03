@@ -21,10 +21,17 @@ RUN yay-install rubygems
 RUN yay-install scala
 # System configuration
 RUN archlinux-java set java-11-openjdk
-ENV PATH="/root/.gem/ruby/2.9.0/bin:/root/.gem/ruby/2.8.0/bin:/root/.gem/ruby/2.7.0/bin:$PATH"
-RUN gem install bundler
+RUN mkdir /rubygems
+RUN chmod 777 /rubygems
+ENV GEM_HOME=/rubygems/bin
+ENV PATH="$GEM_HOME:$PATH"
 # Broken, see https://github.com/moby/moby/issues/29110
 # ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
-RUN echo $PATH
-RUN gem install jekyll travis
-CMD zsh
+RUN gem install --no-user-install bundler jekyll travis
+CMD useradd user\
+ && passwd -d user\
+ && printf 'user ALL=(ALL) ALL\n' | tee -a /etc/sudoers\
+ && cp -r /etc/skel/. /home/user\
+ && chown user /home/user\
+ && cd /home/user/\
+ && sudo -u user zsh
