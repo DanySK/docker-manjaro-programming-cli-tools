@@ -18,9 +18,9 @@ RUN yay-install ruby-irb
 RUN yay-install ruby-rdoc
 RUN yay-install ruby-sass
 RUN yay-install rubygems
-ENV PATH="$(for ruby_bin in /home/danysk/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
 RUN yay-install scala
 # System configuration
 RUN archlinux-java set java-11-openjdk
+ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
 RUN gem install bundler jekyll travis
 CMD zsh
