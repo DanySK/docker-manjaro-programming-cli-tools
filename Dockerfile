@@ -1,7 +1,7 @@
 FROM danysk/manjaro-with-zsh
 # Easy Game
 RUN yay-install curl
-RUN yay-install diff
+RUN yay-install diffutils
 RUN yay-install gradle
 RUN yay-install hugo
 RUN yay-install jdk-openj9-bin
