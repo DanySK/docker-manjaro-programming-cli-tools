@@ -1,4 +1,4 @@
-name: Build container image and deploy on dockerhub
+name: ci/cd
 on:
   push:
   pull_request:
@@ -37,3 +37,15 @@ jobs:
       - name: Deploy Image
         if: ${{ github.event_name != 'pull_request' }}
         run: docker push --all-tags $IMAGE_NAME
+  success:
+    runs-on: ubuntu-22.04
+    needs:
+      - Build-And-Deploy-Container
+    if: >-
+      always() && (
+        contains(join(needs.*.result, ','), 'failure')
+        || !contains(join(needs.*.result, ','), 'cancelled')
+      )
+    steps:
+      - name: Verify that there were no failures
+        run: ${{ !contains(join(needs.*.result, ','), 'failure') }}
