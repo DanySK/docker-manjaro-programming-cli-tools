@@ -1,4 +1,4 @@
-FROM danysk/docker-manjaro-with-zsh:262.20240626.0838
+FROM danysk/docker-manjaro-with-zsh:263.20240627.1419
 # Easy Game
 RUN yay-install curl
 RUN yay-install diffutils
