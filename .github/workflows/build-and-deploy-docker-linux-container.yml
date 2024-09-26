@@ -38,7 +38,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         run: docker push --all-tags $IMAGE_NAME
   success:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs:
       - Build-And-Deploy-Container
     if: >-
