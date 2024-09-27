@@ -1,24 +1,24 @@
-FROM danysk/docker-manjaro-with-zsh:285.20240921.0746
+FROM danysk/manjaro-with-zsh:292.20240927.0834
 # Easy Game
-RUN yay-install curl
-RUN yay-install diffutils
-RUN yay-install gradle
-RUN yay-install hugo
-RUN yay-install jdk-openjdk
-RUN yay-install jdk17-openjdk
-RUN yay-install kotlin
-RUN yay-install python-matplotlib
-RUN yay-install python-numpy
-RUN yay-install python-xarray
-RUN yay-install ruby
-RUN yay-install ruby-ffi
-RUN yay-install ruby-irb
-RUN yay-install ruby-rdoc
-RUN yay-install ruby-sass
-RUN yay-install rubygems
-RUN yay-install scala
+RUN pamac install curl
+RUN pamac install diffutils
+RUN pamac install gradle
+RUN pamac install hugo
+RUN pamac install jdk-openjdk
+RUN pamac install jdk21-openjdk
+RUN pamac install kotlin
+RUN pamac install python-matplotlib
+RUN pamac install python-numpy
+RUN pamac install python-xarray
+RUN pamac install ruby
+RUN pamac install ruby-ffi
+RUN pamac install ruby-irb
+RUN pamac install ruby-rdoc
+RUN pamac install ruby-sass
+RUN pamac install rubygems
+RUN pamac install scala3
 # System configuration
-RUN archlinux-java set java-17-openjdk
+RUN archlinux-java set java-21-openjdk
 RUN mkdir /rubygems
 RUN chmod 777 /rubygems
 ENV GEM_HOME=/rubygems/bin
