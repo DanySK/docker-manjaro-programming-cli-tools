@@ -16,7 +16,11 @@ RUN pamac install --no-confirm ruby-irb
 RUN pamac install --no-confirm ruby-rdoc
 RUN pamac install --no-confirm ruby-sass
 RUN pamac install --no-confirm rubygems
-RUN pamac install --no-confirm scala3
+RUN pamac install --no-confirm scala
+RUN pamac install --no-confirm make
+RUN pamac install --no-confirm gcc
+RUN paccache -rk 0
+RUN pamac clean -b
 # System configuration
 RUN archlinux-java set java-21-openjdk
 RUN mkdir /rubygems
@@ -24,12 +28,10 @@ RUN chmod 777 /rubygems
 ENV GEM_HOME=/rubygems/bin
 ENV PATH="$GEM_HOME:$PATH"
 # Broken, see https://github.com/moby/moby/issues/29110
-# ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
+ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
 RUN gem install --no-user-install bundler jekyll travis
-CMD useradd user\
- && passwd -d user\
- && printf 'user ALL=(ALL) ALL\n' | tee -a /etc/sudoers\
- && cp -r /etc/skel/. /home/user\
- && chown user /home/user\
- && cd /home/user/\
- && sudo -u user zsh
+RUN useradd -m user
+RUN passwd -d user
+RUN printf 'user ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+WORKDIR /home/user
+CMD sudo -u user zsh
