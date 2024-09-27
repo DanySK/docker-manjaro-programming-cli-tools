@@ -16,7 +16,7 @@ RUN pamac install --no-confirm ruby-irb
 RUN pamac install --no-confirm ruby-rdoc
 RUN pamac install --no-confirm ruby-sass
 RUN pamac install --no-confirm rubygems
-RUN pamac install --no-confirm scala
+RUN pamac install --no-confirm scala3
 # System configuration
 RUN archlinux-java set java-21-openjdk
 RUN mkdir /rubygems
