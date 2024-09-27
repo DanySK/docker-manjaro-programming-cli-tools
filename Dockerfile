@@ -1,4 +1,4 @@
-FROM danysk/manjaro-with-zsh:292.20240927.0900
+FROM danysk/manjaro-with-zsh:292.20240927.1459
 # Easy Game
 RUN pamac install --no-confirm curl
 RUN pamac install --no-confirm diffutils
