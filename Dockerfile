@@ -34,4 +34,7 @@ RUN useradd -m user
 RUN passwd -d user
 RUN printf 'user ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 WORKDIR /home/user
-CMD sudo -u user zsh
+USER user
+ENTRYPOINT [ "/bin/zsh", "-c" ]
+CMD [ "zsh" ]
+
