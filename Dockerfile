@@ -1,26 +1,30 @@
-FROM danysk/manjaro-with-zsh:292.20240927.1459
-# Easy Game
-RUN pamac install --no-confirm curl
-RUN pamac install --no-confirm diffutils
-RUN pamac install --no-confirm gradle
-RUN pamac install --no-confirm hugo
-RUN pamac install --no-confirm jdk-openjdk
-RUN pamac install --no-confirm jdk21-openjdk
-RUN pamac install --no-confirm kotlin
-RUN pamac install --no-confirm python-matplotlib
-RUN pamac install --no-confirm python-numpy
-RUN pamac install --no-confirm python-xarray
-RUN pamac install --no-confirm ruby
-RUN pamac install --no-confirm ruby-ffi
-RUN pamac install --no-confirm ruby-irb
-RUN pamac install --no-confirm ruby-rdoc
-RUN pamac install --no-confirm ruby-sass
-RUN pamac install --no-confirm rubygems
-RUN pamac install --no-confirm scala
-RUN pamac install --no-confirm make
-RUN pamac install --no-confirm gcc
+FROM danysk/manjaro-with-zsh:293.20241001.1527
+USER build
+RUN paru -Sy \
+    curl\
+    diffutils\
+    gcc\
+    gradle\
+    hugo\
+    jdk-openjdk\
+    jdk21-openjdk\
+    ki-shell-bin\
+    kotlin\
+    make\
+    python-matplotlib\
+    python-numpy\
+    python-xarray\
+    ruby\
+    ruby-ffi\
+    ruby-irb\
+    ruby-rdoc\
+    ruby-sass\
+    rubygems\
+    scala\
+    --noconfirm
+RUN paru -Sccd --noconfirm
+USER root
 RUN paccache -rk 0
-RUN pamac clean -b
 # System configuration
 RUN archlinux-java set java-21-openjdk
 RUN mkdir /rubygems
