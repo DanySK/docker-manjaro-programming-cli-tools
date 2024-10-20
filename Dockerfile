@@ -11,6 +11,7 @@ RUN paru -Sy \
     ki-shell-bin\
     kotlin\
     make\
+    nano\
     python-matplotlib\
     python-numpy\
     python-xarray\
