@@ -12,6 +12,7 @@ RUN paru -Sy \
     kotlin\
     make\
     nano\
+    patch\
     python-matplotlib\
     python-numpy\
     python-xarray\
