@@ -1,4 +1,4 @@
-FROM danysk/manjaro-with-zsh:309.20241221.1118
+FROM danysk/manjaro-with-zsh:310.20241228.0919
 USER build
 RUN paru -Sy \
     curl\
