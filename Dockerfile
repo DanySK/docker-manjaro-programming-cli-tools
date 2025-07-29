@@ -1,5 +1,10 @@
 FROM danysk/manjaro-with-zsh:329.20250510.1300
 USER build
+RUN paru -Sy\
+    archlinux-keyring\
+    chaotic-keyring\
+    manjaro-keyring\
+    --noconfirm
 RUN paru -Sy \
     curl\
     diffutils\
