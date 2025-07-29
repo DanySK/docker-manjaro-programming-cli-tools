@@ -15,6 +15,7 @@ RUN paru -Sy \
     jdk21-openjdk\
     ki-shell-bin\
     kotlin\
+    libxml2\
     make\
     nano\
     patch\
