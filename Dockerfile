@@ -37,11 +37,10 @@ RUN paccache -rk 0
 RUN archlinux-java set java-21-openjdk
 RUN mkdir /rubygems
 RUN chmod 777 /rubygems
-ENV GEM_HOME=/rubygems/bin
-ENV PATH="$GEM_HOME:$PATH"
-# Broken, see https://github.com/moby/moby/issues/29110
-ENV PATH="$(for ruby_bin in /root/.gem/ruby/*/bin; do ruby_path="$ruby_bin:$ruby_path"; done; echo $ruby_path)$PATH"
-RUN gem install --no-user-install bundler jekyll
+ENV GEM_HOME=/rubygems
+ENV PATH="$GEM_HOME/bin:$PATH"
+RUN gem install --no-user-install bundler
+RUN bundle --version
 RUN useradd -m user
 RUN passwd -d user
 RUN printf 'user ALL=(ALL) ALL\n' | tee -a /etc/sudoers
