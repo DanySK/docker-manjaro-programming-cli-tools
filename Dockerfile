@@ -1,4 +1,4 @@
-FROM danysk/manjaro-with-zsh:343.20260427.1034
+FROM danysk/manjaro-with-zsh:344.20260606.0110
 USER build
 RUN paru -Sy\
     archlinux-keyring\
