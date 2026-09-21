@@ -12,7 +12,7 @@ RUN paru -Sy \
     gradle\
     hugo\
     jdk-openjdk\
-    jdk21-openjdk\
+    jdk25-openjdk\
     ki-shell-bin\
     kotlin\
     libxml2\
@@ -34,7 +34,7 @@ RUN paru -Sccd --noconfirm
 USER root
 RUN paccache -rk 0
 # System configuration
-RUN archlinux-java set java-21-openjdk
+RUN archlinux-java set java-25-openjdk
 RUN mkdir /rubygems
 RUN chmod 777 /rubygems
 ENV GEM_HOME=/rubygems
